@@ -51,6 +51,14 @@ public class AuthServiceImpl implements AuthService {
 
             @Override
             public String login(LoginRequestDto request){
-                return "Login logic will be added next";
+                
+                    User user = userRepository.findByEmail(request.getEmail())
+                    .orElseThrow(()-> new RuntimeException("User not found"));
+
+                    if(!passwordEncoder.matches(request.getPassword(),user.getPassword())){
+                        throw new RuntimeException("Invalid Password");
+                    }
+                    return "Login successful";
+
             }
 }
