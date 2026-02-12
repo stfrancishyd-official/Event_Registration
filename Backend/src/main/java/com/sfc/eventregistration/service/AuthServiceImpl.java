@@ -53,10 +53,15 @@ public class AuthServiceImpl implements AuthService {
             public String login(LoginRequestDto request){
                 
                     User user = userRepository.findByEmail(request.getEmail())
-                    .orElseThrow(()-> new RuntimeException("User not found"));
+                    .orElse(null);
+
+                    if(user == null){
+                        return "Invalid Email or Password";
+                    }
+
 
                     if(!passwordEncoder.matches(request.getPassword(),user.getPassword())){
-                        throw new RuntimeException("Invalid Password");
+                        return "Invalid Password or Password";
                     }
                     return "Login successful";
 

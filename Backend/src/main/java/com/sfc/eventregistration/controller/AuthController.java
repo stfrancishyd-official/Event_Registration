@@ -1,9 +1,11 @@
 package com.sfc.eventregistration.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sfc.eventregistration.dto.LoginRequestDto;
 import com.sfc.eventregistration.dto.RegisterRequestDto;
 import com.sfc.eventregistration.service.AuthService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +34,8 @@ public class AuthController {
         return authService.login(request);
         
     }
+
+
     
     
 
