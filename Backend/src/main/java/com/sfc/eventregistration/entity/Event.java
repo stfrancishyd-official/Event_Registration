@@ -22,5 +22,6 @@ public class Event {
     private String description;
     private String location;
     private LocalDateTime eventDate;
+    private String posterUrl;
     private LocalDateTime createdAt;
 }
