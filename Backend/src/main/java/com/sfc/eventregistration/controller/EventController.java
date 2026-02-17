@@ -16,7 +16,11 @@ import com.sfc.eventregistration.service.EventService;
 
 public class EventController {
             
-    private final EventService eventService = null;
+    private final EventService eventService;
+
+    public EventController(EventService eventService){
+          this.eventService=eventService;
+    }
 
     // faculty creates events
     @PostMapping
