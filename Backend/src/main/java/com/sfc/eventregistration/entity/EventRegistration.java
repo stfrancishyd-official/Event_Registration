@@ -34,7 +34,7 @@ public class EventRegistration {
 
         // Many registrations belong to one event
         @ManyToOne
-        @JoinColumn(name = "user_id", nullable = false)
+        @JoinColumn(name = "event_id", nullable = false)
         private Event event;
 
         private LocalDateTime registrationDate;

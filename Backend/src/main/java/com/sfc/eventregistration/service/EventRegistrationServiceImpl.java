@@ -2,6 +2,8 @@ package com.sfc.eventregistration.service;
 
 import java.time.LocalDateTime;
 
+import org.springframework.stereotype.Service;
+
 import com.sfc.eventregistration.entity.Event;
 import com.sfc.eventregistration.entity.EventRegistration;
 import com.sfc.eventregistration.entity.User;
@@ -9,6 +11,7 @@ import com.sfc.eventregistration.repository.EventRegistrationRepository;
 import com.sfc.eventregistration.repository.EventRepository;
 import com.sfc.eventregistration.repository.UserRepository;
 
+@Service
 public class EventRegistrationServiceImpl implements EventRegistrationService{
 
         private final EventRegistrationRepository registrationRepository;

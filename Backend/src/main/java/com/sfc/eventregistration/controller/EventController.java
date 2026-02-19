@@ -2,6 +2,7 @@ package com.sfc.eventregistration.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ public class EventController {
     }
 
     // faculty creates events
+    @PreAuthorize("hasAnyRole('ADMIN','SUPER_ADMIN')")
     @PostMapping
       public Event createEvent(@RequestBody Event event){
                 return eventService.createdEvent(event);

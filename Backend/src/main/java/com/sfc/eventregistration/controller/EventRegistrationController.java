@@ -1,5 +1,6 @@
 package com.sfc.eventregistration.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ public class EventRegistrationController {
             this.registrationService=registrationService;
         }
 
+        @PreAuthorize("hasRole('STUDENT')")
         @PostMapping
         public String register(@RequestParam Long userId, @RequestParam Long eventId){
             return registrationService.registerStudent(userId, eventId);
