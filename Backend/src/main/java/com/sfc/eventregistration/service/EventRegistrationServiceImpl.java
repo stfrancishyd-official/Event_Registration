@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
+import com.sfc.eventregistration.dto.EventRegistrationDto;
 import com.sfc.eventregistration.entity.Event;
 import com.sfc.eventregistration.entity.EventRegistration;
 import com.sfc.eventregistration.entity.User;
@@ -28,17 +29,17 @@ public class EventRegistrationServiceImpl implements EventRegistrationService{
         }
 
         @Override
-       public  String registerStudent(Long userId, Long eventId){
-        if(registrationRepository.findByUserIdAndEventId(userId, eventId)
+       public  String registerStudent(EventRegistrationDto dto){
+        if(registrationRepository.findByUserIdAndEventId(dto.getUserid(), dto.getEventId())
         .isPresent()){
             return "Student already registred for this event";
         }
 
-                User user =userRepository.findById(userId)
+                User user =userRepository.findById(dto.getUserid())
                             .orElseThrow(()-> 
                             new RuntimeException("User not Found"));
 
-                Event event =eventRepository.findById(eventId)
+                Event event =eventRepository.findById(dto.getEventId())
                              .orElseThrow(() ->
                             new RuntimeException("Event not found"));
 

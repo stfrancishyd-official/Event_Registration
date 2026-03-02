@@ -2,18 +2,19 @@ package com.sfc.eventregistration.security;
 
 import com.sfc.eventregistration.entity.User;
 import com.sfc.eventregistration.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
-import java.util.Collections;
+// import java.util.Collections;
 
 @Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -21,10 +22,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword(),
-                Collections.emptyList()
-        );
+       return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getEmail())
+                .password(user.getPassword())
+                .roles(user.getRole().name())   // VERY IMPORTANT
+                .build();
     }
 }

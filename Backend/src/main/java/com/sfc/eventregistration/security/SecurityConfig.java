@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtFilter jwtFilter;   //  Inject JWT filter
+    private final CustomUserDetailsService userDetailsService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

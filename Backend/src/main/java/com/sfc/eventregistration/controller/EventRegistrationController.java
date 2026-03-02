@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sfc.eventregistration.service.EventRegistrationService;
+import com.sfc.eventregistration.dto.EventRegistrationDto;
 
 @RestController
 @RequestMapping("api/v1/registrations")
@@ -23,6 +24,6 @@ public class EventRegistrationController {
         @PreAuthorize("hasRole('STUDENT')")
         @PostMapping
         public ResponseEntity<?> register(@RequestBody EventRegistrationDto dto){
-            return ResponseEntity.ok(EventRegistrationService.register(dto));
+            return ResponseEntity.ok(EventRegistrationService.registerStudent(dto));
         }
 }
