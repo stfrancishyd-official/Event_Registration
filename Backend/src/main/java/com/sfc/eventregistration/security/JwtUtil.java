@@ -25,6 +25,7 @@ public class JwtUtil {
 
         return Jwts.builder()
                 .subject(username)  //  new method
+                .claim("role", role) // add role inside token
                 .issuedAt(new Date())  //  new method
                 .expiration(new Date(System.currentTimeMillis() + expiration))  //  new method
                 .signWith(getSigningKey())
@@ -39,6 +40,15 @@ public class JwtUtil {
                 .getPayload()
                 .getSubject();
     }
+
+     public String extractRole(String token){
+            return Jwts.parser()
+            .verifyWith(getSigningKey())
+            .build()
+            .parseSignedClaims(token)
+            .getPayload()
+            .get("role", String.class);
+     }
 
     private boolean isTokenExpired(String token){
         Date expirationDate=Jwts.parser()
