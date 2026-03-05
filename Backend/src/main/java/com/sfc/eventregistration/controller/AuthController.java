@@ -25,6 +25,7 @@ public class AuthController {
     @PostMapping("/register")
     public String register(@RequestBody RegisterRequestDto request) {
 
+         System.out.println("REGISTER API HIT");
         return authService.register(request);
     }
 

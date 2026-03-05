@@ -8,7 +8,4 @@ public interface AuthService {
         String register(RegisterRequestDto request);
 
         String login(LoginRequestDto request);
-
-
-
 }

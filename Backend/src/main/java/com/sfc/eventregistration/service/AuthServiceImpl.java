@@ -26,7 +26,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String register(RegisterRequestDto request) {
-
+              System.out.println("REGISTER SERVICE CALLED");
         if (userRepository.existsByEmail(request.getEmail())) {
             return "Email Already Registered";
         }
@@ -47,6 +47,8 @@ public class AuthServiceImpl implements AuthService {
         user.setFacultyName(request.getFacultyName());
 
         userRepository.save(user);
+        System.out.println("USER SAVED");
+
 
         return "User Registered Succesfully";
 
